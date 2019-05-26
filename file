@@ -1,0 +1,12 @@
+Git Commands
+git init
+git add file
+git commit -m "First Commit"
+git status
+git diff
+git log
+git shortlog
+git clean -n
+git clean -i
+git add -u
+git rm filename
