@@ -1,0 +1,209 @@
+NMAP Commandline userguide
+date 16 october 2014   version 1.1    
+***************************
+i)   Scan using Hostname 
+     nmap server2.tecmint.com
+ii)  Scan using IP Address
+     nmap 192.168.0.101
+iii) Scan using “-v” option 
+     it gives detailed info about remote machine
+iv)  Scan Multiple Hosts
+     nmap 192.168.0.101 192.168.0.102 192.168.0.103
+v)   Scan a whole Subnet
+     nmap 192.168.0.*
+vi)  Scan Multiple Servers using last octet of IP address
+     nmap 192.168.0.101,102,103
+vii) Scan list of Hosts from a File
+     cat > nmaptest.txt
+     nmap -iL nmaptest.txt
+viii)Scan an IP Address Range
+     nmap 192.168.0.101-110
+ix)  Scan Network Excluding Remote Hosts
+     nmap 192.168.0.* --exclude 192.168.0.100
+x)   Scan OS information and Traceroute
+     nmap -A 192.168.0.101
+xi)  Scan a Host to Detect Firewall
+     nmap -sA 192.168.0.101
+xii) Scan a Host to check its protected by Firewall
+     nmap -PN 192.168.0.101
+xiii)Find out Live hosts in a Network
+     nmap -sP 192.168.0.*
+xiv) Scan Ports Consecutively
+     Use the “-r” flag to don’t randomize.
+     nmap -r 192.168.0.101
+xv)  Print Host interfaces and Routes
+     nmap --iflist
+xvi) Scan for specific Port
+     nmap -p 80 server2.tecmint.com
+xvii)Scan a TCP Port
+     nmap -p T:8888,80 server2.tecmint.com
+xviii)Scan a UDP Port
+     nmap -sU 53 server2.tecmint.com
+xix) Scan Multiple Ports
+     nmap -p 80,443 192.168.0.101
+xx)  Scan Ports by Network Range
+     nmap -p 80-160 192.168.0.101
+xxi) Find Host Services version Numbers
+     nmap -sV 192.168.0.101
+xxii)Scan remote hosts using TCP ACK (PA) and TCP Syn (PS)
+     nmap -PS 192.168.0.101
+xxiii)Scan Remote host for specific ports with TCP ACK
+     nmap -PA -p 22,80 192.168.0.101
+
+xxiv)Scan Remote host for specific ports with TCP Syn
+     nmap -PS -p 22,80 192.168.0.101
+xxv) Perform a stealthy Scan
+     nmap -sS 192.168.0.101
+xxvi)Check most commonly used Ports with TCP Syn
+     nmap -sT 192.168.0.101
+xxvii)Perform a tcp null scan to fool a firewall
+     nmap -sN 192.168.0.101
+*****************************************************************usefull nmap tasks begin*******************************************************************
+nmap -v -sV --version-all -p 53 10.199.222.1-254 |grep -i open |grep -v BIND               # finding DNS server in the network
+******************************************************************usefull nmap task ends*****************************************************************
+***********************************Nmap command ends********************************************************
+Q1.  find the network printers in a lan 
+Ans. nmap -p 9100,515,631 10.199.222.21-63 |grep -B 3 open |grep -i report |awk '{print $5 " : " $6}'
+     above command will find printer in the range 10.199.222.21 to 10.199.222.63
+        alternatively
+        nmap -O 10.199.222.23-63 -oG - | grep printer 
+
+2.mostly used commands
+nmap -sV 192.168.0.101
+nmap 192.168.0.101-110
+*************************************************************************************************************
+***********************************Nmap cheat sheet begins***************************************************
+
+Basic Scanning Techniques
+
+Scan a single target           —> nmap [target]
+Scan multiple targets          —> nmap [target1,target2,etc]
+Scan a list of targets         —> nmap -iL [list.txt]
+Scan a range of hosts          —> nmap [range of IP addresses]
+Scan an entire subnet          —> nmap [IP address/cdir]
+Scan random hosts              —> nmap -iR [number]
+Excluding targets from a scan  —> nmap [targets] –exclude [targets]
+Excluding targets using a list —> nmap [targets] –excludefile [list.txt]
+Perform an aggressive scan     —> nmap -A [target]
+Scan an IPv6 target            —> nmap -6 [target]
+
+Discovery Options
+
+Perform a ping scan only       —> nmap -sP [target]
+Don’t ping                     —> nmap -PN [target]
+TCP SYN Ping                   —> nmap -PS [target]
+TCP ACK ping                   —> nmap -PA [target]
+UDP ping                       —> nmap -PU [target]
+SCTP Init Ping                 —> nmap -PY [target]
+ICMP echo ping                 —> nmap -PE [target]
+ICMP Timestamp ping            —> nmap -PP [target]
+ICMP address mask ping         —> nmap -PM [target]
+IP protocol ping               —> nmap -PO [target]
+ARP ping                       —> nmap -PR [target]
+Traceroute                     —> nmap –traceroute [target]
+Force reverse DNS resolution   —> nmap -R [target]
+Disable reverse DNS resolution —> nmap -n [target]
+Alternative DNS lookup         —> nmap –system-dns [target]
+Manually specify DNS servers   —> nmap –dns-servers [servers] [target]
+Create a host list             —> nmap -sL [targets]
+
+Advanced Scanning Options
+
+TCP SYN Scan                   —> nmap -sS [target]
+TCP connect scan               —> nmap -sT [target]
+UDP scan                       —> nmap -sU [target]
+TCP Null scan                  —> nmap -sN [target]
+TCP Fin scan                   —> nmap -sF [target]
+Xmas scan                      —> nmap -sX [target]
+TCP ACK scan                   —> nmap -sA [target]
+Custom TCP scan                —> nmap –scanflags [flags] [target]
+IP protocol scan               —> nmap -sO [target]
+Send Raw Ethernet packets      —> nmap –send-eth [target]
+Send IP packets                —> nmap –send-ip [target]
+
+Port Scanning Options
+
+Perform a fast scan            —> nmap -F [target]
+Scan specific ports            —> nmap -p [ports] [target]
+Scan ports by name             —> nmap -p [port name] [target]
+Scan ports by protocol         —> nmap -sU -sT -p U:[ports],T:[ports] [target]
+Scan all ports                 —> nmap -p “*” [target]
+Scan top ports                 —> nmap –top-ports [number] [target]
+Perform a sequential port scan —> nmap -r [target]
+
+Version Detection
+
+Operating system detection     —> nmap -O [target]
+Submit TCP/IP Fingerprints     —> http://www.nmap.org/submit/
+Attempt to guess an unknown    —> nmap -O –osscan-guess [target]
+Service version detection      —> nmap -sV [target]
+Troubleshooting version scans  —> nmap -sV –version-trace [target]
+Perform a RPC scan             —> nmap -sR [target]
+
+Timing Options
+
+Timing Templates                —> nmap -T [0-5] [target]
+Set the packet TTL              —> nmap –ttl [time] [target]
+Minimum of parallel connections —> nmap –min-parallelism [number] [target]
+Maximum of parallel connection  —> nmap –max-parallelism [number] [target]
+Minimum host group size         —> nmap –min-hostgroup [number] [targets]
+Maximum host group size         —> nmap –max-hostgroup [number] [targets]
+Maximum RTT timeout             —> nmap –initial-rtt-timeout [time] [target]
+Initial RTT timeout             —> nmap –max-rtt-timeout [TTL] [target]
+Maximum retries                 —> nmap –max-retries [number] [target]
+Host timeout                    —> nmap –host-timeout [time] [target]
+Minimum Scan delay              —> nmap –scan-delay [time] [target]
+Maximum scan delay              —> nmap –max-scan-delay [time] [target]
+Minimum packet rate             —> nmap –min-rate [number] [target]
+Maximum packet rate             —> nmap –max-rate [number] [target]
+Defeat reset rate limits        —> nmap –defeat-rst-ratelimit [target]
+
+Firewall Evasion Techniques
+
+Fragment packets                —> nmap -f [target]
+Specify a specific MTU          —> nmap –mtu [MTU] [target]
+Use a decoy                     —> nmap -D RND: [number] [target]
+Idle zombie scan                —> nmap -sI [zombie] [target]
+Manually specify a source port  —> nmap –source-port [port] [target]
+Append random data              —> nmap –data-length [size] [target]
+Randomize target scan order     —> nmap –randomize-hosts [target]
+Spoof MAC Address               —> nmap –spoof-mac [MAC|0|vendor] [target]
+Send bad checksums              —> nmap –badsum [target]
+
+Output Options
+
+Save output to a text file      —> nmap -oN [scan.txt] [target]
+Save output to a xml file       —> nmap -oX [scan.xml] [target]
+Grepable output                 —> nmap -oG [scan.txt] [target]
+Output all supported file types —> nmap -oA [path/filename] [target]
+Periodically display statistics —> nmap –stats-every [time] [target]
+133t output                     —> nmap -oS [scan.txt] [target]
+
+Troubleshooting and debugging
+
+Help                            —> nmap -h
+Display Nmap version            —> nmap -V
+Verbose output                  —> nmap -v [target]
+Debugging                       —> nmap -d [target]
+Display port state reason       —> nmap –reason [target]
+Only display open ports         —> nmap –open [target]
+Trace packets                   —> nmap –packet-trace [target]
+Display host networking         —> nmap –iflist
+Specify a network interface     —> nmap -e [interface] [target]
+
+Nmap Scripting Engine
+
+Execute individual scripts          —> nmap –script [script.nse] [target]
+Execute multiple scripts            —> nmap –script [expression] [target]
+Script categories                   —> all, auth, default, discovery, external, intrusive, malware, safe, vuln
+Execute scripts by category         —> nmap –script [category] [target]
+Execute multiple scripts categories —> nmap –script [category1,category2, etc]
+Troubleshoot scripts                —> nmap –script [script] –script-trace [target]
+Update the script database          —> nmap –script-updatedb
+
+Ndiff
+
+Comparison using Ndiff          —> ndiff [scan1.xml] [scan2.xml]
+Ndiff verbose mode              —> ndiff -v [scan1.xml] [scan2.xml]
+XML output mode                 —> ndiff –xml [scan1.xm] [scan2.xml]
+*********************************Nmap cheat sheet ends************************************************
