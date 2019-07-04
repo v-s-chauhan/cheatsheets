@@ -24,3 +24,5 @@ git ls-tree personal-office
 git checkout personnal-office
 git maerge master
 git log --name-only
+git merge master
+echo "hello">file.txt; git add .; git commit -m "modified in branch"; git checkout master; git merge office
