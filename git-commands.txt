@@ -10,3 +10,16 @@ git clean -n
 git clean -i
 git add -u
 git rm filename
+git branch
+git checkout personal-office 
+git ls-tree branch-name
+git checkout branch2
+git checkout master 
+git fetch
+git merge branch2 -m "commit message"
+git push
+git ls-tree branch2
+git ls-tree branchname
+git ls-tree personal-office
+git checkout personnal-office
+git maerge master
