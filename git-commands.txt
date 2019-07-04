@@ -28,3 +28,4 @@ git merge master
 echo "hello">file.txt; git add .; git commit -m "modified in branch"; git checkout master; git merge office
 git push
 echo "once again">>file.txt; git add .; git commit -m "modified at master" ; git checkout office; git merge master
+git branch -d office 
