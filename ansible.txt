@@ -1,0 +1,27 @@
+hostfile 
+[boxes]
+10.199.x.x
+[boxes:vars]
+ansible_connection=ssh
+ansible_user=***
+ansible_ssh_pass=****
+
+Ad-Hoc Commands
+ansible -m ping
+
+ansible -i /etc/ansible/hosts -m ping boxes
+ansible all -m ping
+ansibl boxes -m shell -a 'ls -al; pwd'
+
+Playbook myplay.yml
+---
+
+- host: boxes
+  tasks:
+  - name: check
+    ping: 
+    
+...
+
+Executing Ansible Playbook on mentioned hostfile
+ansible-playbook myplay.yml
