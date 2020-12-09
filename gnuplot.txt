@@ -1,0 +1,24 @@
+note: get a file with two columns separated by space.
+
+Example 1: Simple plot with standard ooutput
+set title "myplot"
+set xlabel "Time"
+set ylabel "Energy"
+plot "file.txt" with lines
+
+Example 1: Simple plot with output on a png file
+set title "myplot"
+set xlabel "Time"
+set ylabel "Energy"
+set terminal png
+set output "plot.png"
+plot "file.txt" with lines
+
+Example 2: Plot different columns of a file
+plot "file.txt" using 4:2 with lines
+
+Example 3: Plot several functions at a time 
+plot "file.txt" with lines, exp(x) with lines
+
+Other Options: 
+multiplot, grid, replot
