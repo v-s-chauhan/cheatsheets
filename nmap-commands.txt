@@ -1,62 +1,59 @@
 NMAP Commandline userguide
 date 16 october 2014   version 1.1    
 ***************************
-i)   Scan using Hostname 
+1)   Scan using Hostname 
      nmap server2.tecmint.com
-ii)  Scan using IP Address
+2)   Scan using IP Address
      nmap 192.168.0.101
-iii) Scan using “-v” option 
+3)   Scan using “-v” option 
      it gives detailed info about remote machine
-iv)  Scan Multiple Hosts
+4)   Scan Multiple Hosts
      nmap 192.168.0.101 192.168.0.102 192.168.0.103
-v)   Scan a whole Subnet
+5)   Scan a whole Subnet
      nmap 192.168.0.*
-vi)  Scan Multiple Servers using last octet of IP address
+6)   Scan Multiple Servers using last octet of IP address
      nmap 192.168.0.101,102,103
-vii) Scan list of Hosts from a File
-     cat > nmaptest.txt
+7)   Scan list of Hosts from a File
      nmap -iL nmaptest.txt
-viii)Scan an IP Address Range
+8)   Scan an IP Address Range
      nmap 192.168.0.101-110
-ix)  Scan Network Excluding Remote Hosts
+9)   Scan Network Excluding Remote Hosts
      nmap 192.168.0.* --exclude 192.168.0.100
-x)   Scan OS information and Traceroute
+10)  Scan OS information and Traceroute
      nmap -A 192.168.0.101
-xi)  Scan a Host to Detect Firewall
+11)  Scan a Host to Detect Firewall
      nmap -sA 192.168.0.101
-xii) Scan a Host to check its protected by Firewall
+12)  Scan a Host to check its protected by Firewall
      nmap -PN 192.168.0.101
-xiii)Find out Live hosts in a Network
+13)  Find out Live hosts in a Network
      nmap -sP 192.168.0.*
-xiv) Scan Ports Consecutively
-     Use the “-r” flag to don’t randomize.
+14)  Scan Ports Consecutively,not randomly.
      nmap -r 192.168.0.101
-xv)  Print Host interfaces and Routes
+15)  Print Host interfaces and Routes
      nmap --iflist
-xvi) Scan for specific Port
+16)  Scan for specific Port
      nmap -p 80 server2.tecmint.com
-xvii)Scan a TCP Port
+17)  Scan a TCP Port
      nmap -p T:8888,80 server2.tecmint.com
-xviii)Scan a UDP Port
+18)  Scan a UDP Port
      nmap -sU 53 server2.tecmint.com
-xix) Scan Multiple Ports
+19)  Scan Multiple Ports
      nmap -p 80,443 192.168.0.101
-xx)  Scan Ports by Network Range
+20)  Scan Ports by Network Range
      nmap -p 80-160 192.168.0.101
-xxi) Find Host Services version Numbers
+21)  Find Host Services version Numbers
      nmap -sV 192.168.0.101
-xxii)Scan remote hosts using TCP ACK (PA) and TCP Syn (PS)
+22)  Scan remote hosts using TCP ACK (PA) and TCP Syn (PS)
      nmap -PS 192.168.0.101
-xxiii)Scan Remote host for specific ports with TCP ACK
+23)  Scan Remote host for specific ports with TCP ACK
      nmap -PA -p 22,80 192.168.0.101
-
-xxiv)Scan Remote host for specific ports with TCP Syn
+24)  Scan Remote host for specific ports with TCP Syn
      nmap -PS -p 22,80 192.168.0.101
-xxv) Perform a stealthy Scan
+25)  Perform a stealthy Scan
      nmap -sS 192.168.0.101
-xxvi)Check most commonly used Ports with TCP Syn
+26)  Check most commonly used Ports with TCP Syn
      nmap -sT 192.168.0.101
-xxvii)Perform a tcp null scan to fool a firewall
+27)  Perform a tcp null scan to fool a firewall
      nmap -sN 192.168.0.101
 *****************************************************************usefull nmap tasks begin*******************************************************************
 nmap -v -sV --version-all -p 53 10.199.222.1-254 |grep -i open |grep -v BIND               # finding DNS server in the network
@@ -73,7 +70,6 @@ nmap -sV 192.168.0.101
 nmap 192.168.0.101-110
 *************************************************************************************************************
 ***********************************Nmap cheat sheet begins***************************************************
-
 Basic Scanning Techniques
 
 Scan a single target           —> nmap [target]
