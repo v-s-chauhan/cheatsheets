@@ -1,0 +1,4 @@
+1. create a tex template using the source <placeholder> text
+2. cat template |sed 's/PLACE1/value1/' |sed 's/PLACE2/value2/'
+3. pdflatex output.tex
+
